@@ -1,0 +1,476 @@
+<div class="min-h-screen bg-slate-50 p-4 sm:p-6 lg:p-8">
+  <!-- Page Header -->
+  <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+    <div>
+      <h1 class="text-2xl font-bold tracking-tight text-slate-900">Item Master</h1>
+      <p class="mt-1 text-sm text-slate-500">Manage your products and inventory items</p>
+    </div>
+    <!-- Add Product -->
+    <button
+      type="button"
+       (click)="openAddProductModal()"
+      class="inline-flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+    >
+      <!-- Plus Icon -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="2"
+        stroke="currentColor"
+        class="h-5 w-5"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+      </svg>
+      Add Product
+    </button>
+  </div>
+  <!-- Main Card -->
+  <div class="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+    <!-- Card Header -->
+    <div
+      class="flex flex-col gap-4 border-b border-slate-200 px-5 py-4 sm:flex-row sm:items-center sm:justify-between"
+    >
+      <div>
+        <h2 class="text-base font-semibold text-slate-900">Products</h2>
+        <p class="mt-1 text-sm text-slate-500">24 products found</p>
+      </div>
+      <!-- Search -->
+      <div class="relative w-full sm:w-72">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.8"
+          stroke="currentColor"
+          class="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="m21 21-4.35-4.35m1.35-5.4a6.75 6.75 0 1 1-13.5 0 6.75 6.75 0 0 1 13.5 0Z"
+          />
+        </svg>
+        <input
+          type="text"
+          placeholder="Search products..."
+          class="w-full rounded-lg border border-slate-300 bg-white py-2.5 pl-10 pr-4 text-sm text-slate-700 outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+        />
+      </div>
+    </div>
+    <!-- Table -->
+    <div class="overflow-x-auto">
+      <table class="min-w-full">
+        <!-- Table Head -->
+        <thead class="border-b border-slate-200 bg-slate-50">
+          <tr>
+            <th
+              class="px-6 py-3.5 text-left text-xs font-semibold uppercase tracking-wider text-slate-500"
+            >
+              Product Name
+            </th>
+            <th
+              class="px-6 py-3.5 text-left text-xs font-semibold uppercase tracking-wider text-slate-500"
+            >
+              Price
+            </th>
+            <th
+              class="px-6 py-3.5 text-left text-xs font-semibold uppercase tracking-wider text-slate-500"
+            >
+              Description
+            </th>
+            <th
+              class="px-6 py-3.5 text-left text-xs font-semibold uppercase tracking-wider text-slate-500"
+            >
+              Rating
+            </th>
+            <th
+              class="px-6 py-3.5 text-left text-xs font-semibold uppercase tracking-wider text-slate-500"
+            >
+              Status
+            </th>
+            <th
+              class="px-6 py-3.5 text-center text-xs font-semibold uppercase tracking-wider text-slate-500"
+            >
+              Actions
+            </th>
+          </tr>
+        </thead>
+        <!-- Table Body -->
+        <tbody class="divide-y divide-slate-100">
+          <!-- Product 1 -->
+          <tr class="group transition hover:bg-slate-50">
+            <!-- Product Name -->
+            <td class="whitespace-nowrap px-6 py-4">
+              <div class="flex items-center gap-3">
+                <div
+                  class="flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-100 text-sm font-bold text-indigo-600"
+                >
+                  IP
+                </div>
+                <div>
+                  <p class="font-medium text-slate-900">iPhone 15</p>
+                  <p class="text-xs text-slate-500">SKU: IP15-001</p>
+                </div>
+              </div>
+            </td>
+            <!-- Price -->
+            <td class="whitespace-nowrap px-6 py-4">
+              <span class="font-semibold text-slate-900"> $999.00 </span>
+            </td>
+            <!-- Description -->
+            <td class="max-w-xs px-6 py-4">
+              <p class="truncate text-sm text-slate-500">
+                Latest Apple smartphone with advanced camera
+              </p>
+            </td>
+            <!-- Rating -->
+            <td class="whitespace-nowrap px-6 py-4">
+              <div class="flex items-center gap-1.5">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="h-4 w-4 text-amber-400"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.306l-4.117 3.527 1.257 5.273c.27 1.136-.976 2.034-1.974 1.425L12 18.033l-4.613 3.148c-.998.609-2.244-.289-1.974-1.425l1.257-5.273-4.117-3.527c-.887-.761-.415-2.213.749-2.306l5.404-.434 2.082-5.006Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span class="text-sm font-medium text-slate-700"> 4.8 </span>
+              </div>
+            </td>
+            <!-- Status -->
+            <td class="whitespace-nowrap px-6 py-4">
+              <span
+                class="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700"
+              >
+                <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span> Active
+              </span>
+            </td>
+            <!-- Actions -->
+            <td class="whitespace-nowrap px-6 py-4">
+              <div class="flex items-center justify-center gap-2">
+                <!-- Edit -->
+                <button
+                  type="button"
+                  title="Edit product"
+                  class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-500 transition hover:border-indigo-200 hover:bg-indigo-50 hover:text-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-100"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.8"
+                    stroke="currentColor"
+                    class="h-4 w-4"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Z"
+                    />
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M19.5 7.125 16.875 4.5"
+                    />
+                  </svg>
+                </button>
+                <!-- Delete -->
+                <button
+                  type="button"
+                  title="Delete product"
+                  class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-500 transition hover:border-red-200 hover:bg-red-50 hover:text-red-600 focus:outline-none focus:ring-2 focus:ring-red-100"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.8"
+                    stroke="currentColor"
+                    class="h-4 w-4"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12.33 0c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0C7.91 2.118 7 3.102 7 4.282v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </td>
+          </tr>
+          <!-- Product 2 -->
+          <tr class="group transition hover:bg-slate-50">
+            <td class="whitespace-nowrap px-6 py-4">
+              <div class="flex items-center gap-3">
+                <div
+                  class="flex h-10 w-10 items-center justify-center rounded-lg bg-violet-100 text-sm font-bold text-violet-600"
+                >
+                  MS
+                </div>
+                <div>
+                  <p class="font-medium text-slate-900">MacBook Pro</p>
+                  <p class="text-xs text-slate-500">SKU: MBP-002</p>
+                </div>
+              </div>
+            </td>
+            <td class="whitespace-nowrap px-6 py-4">
+              <span class="font-semibold text-slate-900"> $1,499.00 </span>
+            </td>
+            <td class="max-w-xs px-6 py-4">
+              <p class="truncate text-sm text-slate-500">Professional laptop with M-series chip</p>
+            </td>
+            <td class="whitespace-nowrap px-6 py-4">
+              <div class="flex items-center gap-1.5">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="h-4 w-4 text-amber-400"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.306l-4.117 3.527 1.257 5.273c.27 1.136-.976 2.034-1.974 1.425L12 18.033l-4.613 3.148c-.998.609-2.244-.289-1.974-1.425l1.257-5.273-4.117-3.527c-.887-.761-.415-2.213.749-2.306l5.404-.434 2.082-5.006Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span class="text-sm font-medium text-slate-700"> 4.9 </span>
+              </div>
+            </td>
+            <td class="whitespace-nowrap px-6 py-4">
+              <span
+                class="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700"
+              >
+                <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span> Active
+              </span>
+            </td>
+            <td class="whitespace-nowrap px-6 py-4">
+              <div class="flex items-center justify-center gap-2">
+                <!-- Edit -->
+                <button
+                  type="button"
+                  title="Edit product"
+                  class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-500 transition hover:border-indigo-200 hover:bg-indigo-50 hover:text-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-100"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.8"
+                    stroke="currentColor"
+                    class="h-4 w-4"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Z"
+                    />
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M19.5 7.125 16.875 4.5"
+                    />
+                  </svg>
+                </button>
+                <!-- Delete -->
+                <button
+                  type="button"
+                  title="Delete product"
+                  class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-500 transition hover:border-red-200 hover:bg-red-50 hover:text-red-600 focus:outline-none focus:ring-2 focus:ring-red-100"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.8"
+                    stroke="currentColor"
+                    class="h-4 w-4"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12.33 0c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0C7.91 2.118 7 3.102 7 4.282v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- Footer -->
+    <div
+      class="flex flex-col gap-3 border-t border-slate-200 px-5 py-4 sm:flex-row sm:items-center sm:justify-between"
+    >
+      <p class="text-sm text-slate-500">
+        Showing <span class="font-medium text-slate-700">1</span> to
+        <span class="font-medium text-slate-700">10</span> of
+        <span class="font-medium text-slate-700">24</span> products
+      </p>
+      <div class="flex items-center gap-2">
+        <button
+          type="button"
+          class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-500 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
+          disabled
+        >
+          Previous
+        </button>
+        <button
+          type="button"
+          class="rounded-lg bg-indigo-600 px-3 py-2 text-sm font-medium text-white"
+        >
+          1
+        </button>
+        <button
+          type="button"
+          class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50"
+        >
+          2
+        </button>
+        <button
+          type="button"
+          class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50"
+        >
+          Next
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Product Modal -->
+@if (showAddProductModal) {
+  <div
+    class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 p-4 backdrop-blur-sm"
+    (click)="closeAddProductModal()"
+  >
+    <!-- Modal -->
+    <div
+      class="w-full max-w-lg overflow-hidden rounded-xl bg-white shadow-2xl"
+      (click)="$event.stopPropagation()"
+    >
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between border-b border-slate-200 px-6 py-4">
+        <div>
+          <h2 class="text-lg font-semibold text-slate-900">Add Product</h2>
+          <p class="mt-1 text-sm text-slate-500">Add a new product to your inventory</p>
+        </div>
+        <!-- Close -->
+        <button
+          type="button"
+          (click)="closeAddProductModal()"
+          class="inline-flex h-9 w-9 items-center justify-center rounded-lg text-slate-400 transition hover:bg-slate-100 hover:text-slate-600"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            class="h-5 w-5"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <!-- Form -->
+      <form class="space-y-5 px-6 py-6">
+        <!-- Product Name -->
+        <div>
+          <label for="productName" class="mb-1.5 block text-sm font-medium text-slate-700">
+            Product Name <span class="text-red-500">*</span>
+          </label>
+          <input
+            id="productName"
+            type="text"
+            placeholder="Enter product name"
+            class="w-full rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+          />
+        </div>
+        <!-- Price + Rating -->
+        <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <!-- Price -->
+          <div>
+            <label for="price" class="mb-1.5 block text-sm font-medium text-slate-700">
+              Price <span class="text-red-500">*</span>
+            </label>
+            <div class="relative">
+              <span class="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-slate-400">
+                $
+              </span>
+              <input
+                id="price"
+                type="number"
+                placeholder="0.00"
+                class="w-full rounded-lg border border-slate-300 py-2.5 pl-8 pr-3.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+              />
+            </div>
+          </div>
+          <!-- Rating -->
+          <div>
+            <label for="rating" class="mb-1.5 block text-sm font-medium text-slate-700">
+              Rating
+            </label>
+            <input
+              id="rating"
+              type="number"
+              min="0"
+              max="5"
+              step="0.1"
+              placeholder="0 - 5"
+              class="w-full rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+            />
+          </div>
+        </div>
+        <!-- Description -->
+        <div>
+          <label for="description" class="mb-1.5 block text-sm font-medium text-slate-700">
+            Description
+          </label>
+          <textarea
+            id="description"
+            rows="4"
+            placeholder="Enter product description"
+            class="w-full resize-none rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+          ></textarea>
+        </div>
+        <!-- Status -->
+        <div>
+          <label for="status" class="mb-1.5 block text-sm font-medium text-slate-700">
+            Status
+          </label>
+          <select
+            id="status"
+            class="w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+          >
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+          </select>
+        </div>
+      </form>
+      <!-- Footer -->
+      <div
+        class="flex items-center justify-end gap-3 border-t border-slate-200 bg-slate-50 px-6 py-4"
+      >
+        <button
+          type="button"
+          (click)="closeAddProductModal()"
+          class="rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-200"
+        >
+          Cancel
+        </button>
+        <button
+          type="submit"
+          class="rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+        >
+          Add Product
+        </button>
+      </div>
+    </div>
+  </div>
+}
