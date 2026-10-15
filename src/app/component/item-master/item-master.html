@@ -8,7 +8,7 @@
     <!-- Add Product -->
     <button
       type="button"
-       (click)="openAddProductModal()"
+      (click)="openAddProductModal()"
       class="inline-flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
     >
       <!-- Plus Icon -->
@@ -379,7 +379,12 @@
         </button>
       </div>
       <!-- Form -->
-      <form class="space-y-5 px-6 py-6">
+      <form
+        id="productForm"
+        [formGroup]="productForm"
+        (ngSubmit)="getFormValue()"
+        class="space-y-5 px-6 py-6"
+      >
         <!-- Product Name -->
         <div>
           <label for="productName" class="mb-1.5 block text-sm font-medium text-slate-700">
@@ -389,6 +394,7 @@
             id="productName"
             type="text"
             placeholder="Enter product name"
+            formControlName="ProductName"
             class="w-full rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
           />
         </div>
@@ -407,6 +413,7 @@
                 id="price"
                 type="number"
                 placeholder="0.00"
+                formControlName="Price"
                 class="w-full rounded-lg border border-slate-300 py-2.5 pl-8 pr-3.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
               />
             </div>
@@ -423,6 +430,7 @@
               max="5"
               step="0.1"
               placeholder="0 - 5"
+              formControlName="Rating"
               class="w-full rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
             />
           </div>
@@ -436,6 +444,7 @@
             id="description"
             rows="4"
             placeholder="Enter product description"
+            formControlName="Description"
             class="w-full resize-none rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
           ></textarea>
         </div>
@@ -446,6 +455,7 @@
           </label>
           <select
             id="status"
+            formControlName="Status"
             class="w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
           >
             <option value="active">Active</option>
@@ -466,7 +476,8 @@
         </button>
         <button
           type="submit"
-          class="rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          form="productForm"
+          class="rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700"
         >
           Add Product
         </button>
