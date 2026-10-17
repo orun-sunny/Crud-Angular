@@ -1,5 +1,5 @@
-import { CommonModule, isPlatformBrowser } from "@angular/common";
-import { Component, inject, OnInit, PLATFORM_ID } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { afterNextRender, Component, inject, Injector, signal } from "@angular/core";
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { ProductModel } from "../../Model/product";
 import { Product } from "../../Services/product";
@@ -10,22 +10,17 @@ import { Product } from "../../Services/product";
   styleUrl: "./item-master.css",
   templateUrl: "./item-master.html",
 })
-export class ItemMaster implements OnInit {
+export class ItemMaster {
   showAddProductModal = false;
   productForm: FormGroup = new FormGroup({});
-  productList: ProductModel[] = [];
+  productList = signal<ProductModel[]>([]);
+  loadError = signal("");
   productService = inject(Product);
-  private platformId = inject(PLATFORM_ID);
+  private injector = inject(Injector);
 
   constructor(private fb: FormBuilder) {
     this.setFormState();
-  }
-
-  ngOnInit(): void {
-    this.setFormState();
-    if (isPlatformBrowser(this.platformId)) {
-      this.getAllProducts();
-    }
+    afterNextRender(() => this.getAllProducts(), { injector: this.injector });
   }
 
   openAddProductModal(): void {
@@ -77,17 +72,21 @@ export class ItemMaster implements OnInit {
       },
       error: (error) => {
         console.error("Error adding product:", error);
+        this.loadError.set("Could not save product. Check the API and the browser console.");
       },
     });
   }
 
   getAllProducts(): void {
+    this.loadError.set("");
     this.productService.getAllProducts().subscribe({
       next: (response: ProductModel[]) => {
-        this.productList = response ?? [];
+        this.productList.set(Array.isArray(response) ? response : []);
       },
       error: (error) => {
         console.error("Error fetching products:", error);
+        const status = error?.status ? ` (${error.status})` : "";
+        this.loadError.set(`Could not load products from http://localhost:5115/api/Products${status}`);
       },
     });
   }

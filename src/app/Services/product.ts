@@ -1,22 +1,19 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, Service } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { ProductModel } from '../Model/product';
 
 @Injectable({
   providedIn: 'root',
 })
-
 export class Product {
-    private apiUrl = 'https://localhost:5115/api/Product';
+  private apiUrl = 'http://localhost:5115/api';
+  private http = inject(HttpClient);
 
-    constructor() {}
-    http = inject(HttpClient);
+  getAllProducts() {
+    return this.http.get<ProductModel[]>(`${this.apiUrl}/Products`);
+  }
 
-    getAllProducts() {
-        return this.http.get<ProductModel[]>(`${this.apiUrl}/GetAllProducts`);
-    }
-
-    addProduct(product: ProductModel) {
-        return this.http.post(`${this.apiUrl}/AddProduct`, product);
-    }
+  addProduct(product: ProductModel) {
+    return this.http.post<ProductModel>(`${this.apiUrl}/Product`, product);
+  }
 }
