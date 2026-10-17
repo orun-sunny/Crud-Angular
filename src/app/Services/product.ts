@@ -16,4 +16,11 @@ export class Product {
   addProduct(product: ProductModel) {
     return this.http.post<ProductModel>(`${this.apiUrl}/Product`, product);
   }
+  updateProduct(product: ProductModel) {
+    return this.http.put<ProductModel>(`${this.apiUrl}/Product/${product.id}`, product);
+  }
+  
+  deleteProduct(productId: number) {
+    return this.http.delete(`${this.apiUrl}/Product/${productId}`);
+  }
 }

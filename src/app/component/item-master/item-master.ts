@@ -28,6 +28,7 @@ export class ItemMaster {
   }
 
   closeAddProductModal(): void {
+    this.setFormState
     this.showAddProductModal = false;
     this.productForm.reset({
       productName: "",
@@ -37,6 +38,7 @@ export class ItemMaster {
       status: "active",
     });
   }
+  isEditMode = false;
 
   setFormState() {
     this.productForm = this.fb.group({
@@ -93,5 +95,52 @@ export class ItemMaster {
 
   isActive(item: ProductModel): boolean {
     return item.status === true || item.status === "active";
+  }
+
+  openAddProductModa(): void {
+  this.isEditMode = false;
+
+  this.productForm.reset({
+    id: 0,
+    productName: "",
+    price: "",
+    description: "",
+    rating: "",
+    status: "active",
+  });
+
+  this.showAddProductModal = true;
+}
+
+  editProduct(productId: any): void {
+    const productToEdit = this.productList().find((product) => product.id === productId);
+    if (productToEdit) {
+      this.productForm.setValue({
+        id: productToEdit.id,
+        productName: productToEdit.productName,
+        price: String(productToEdit.price),
+        description: productToEdit.description,
+        rating: String(productToEdit.rating),
+        status: productToEdit.status === true || productToEdit.status === "active" ? "active" : "inactive",
+      });
+      this.showAddProductModal = true;
+    } else {
+      console.error(`Product with ID ${productId} not found.`);
+      this.loadError.set(`Product with ID ${productId} not found.`);
+    }
+  }
+
+
+  deleteProduct(productId: number): void {
+    this.productService.deleteProduct(productId).subscribe({
+      next: () => {
+        alert("Product deleted successfully.");
+        this.getAllProducts();
+      },
+      error: (error) => {
+        console.error("Error deleting product:", error);
+        this.loadError.set("Could not delete product. Check the API and the browser console.");
+      }
+    });
   }
 }
